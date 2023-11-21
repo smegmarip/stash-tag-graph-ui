@@ -1,0 +1,9 @@
+name: Tag Graph UI
+description: Displays a visual graph of the Tag relations
+version: 0.0.1
+ui:
+  css:
+    - vis-network.min.css
+  javascript:
+    - vis-network.min.js
+    - tagGraphUI.js
