@@ -48,8 +48,19 @@
         },
         filter: { q: "", per_page: -1 },
       },
-      query:
-        "query FindTags($filter: FindFilterType, $tag_filter: TagFilterType) {\n    findTags(filter: $filter, tag_filter: $tag_filter) {\n        count\n        tags {\n            id\n            name\n            scene_count\n            parents { id }\n            children { id }\n        }\n    }\n}",
+      query: `
+        query FindTags($filter: FindFilterType, $tag_filter: TagFilterType) {
+            findTags(filter: $filter, tag_filter: $tag_filter) {
+                count
+                tags {
+                    id
+                    name
+                    scene_count(depth: -1)
+                    parents { id }
+                    children { id }
+                }
+            }
+        }`,
     };
     const result = await callGraphQL(reqData);
     return result.findTags.tags;
